@@ -1,4 +1,8 @@
 # NewsApp
 
 - State Management Provider
-- Patternt MVVM
+- Pattern mvvm
+
+### feature:
+- infinity pages
+- reload
