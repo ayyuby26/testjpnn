@@ -4,7 +4,7 @@
 - Pattern mvvm
 
 ### features:
-- infinity pages
+- infinity page
 - pull for reload page
 - search screen
 
