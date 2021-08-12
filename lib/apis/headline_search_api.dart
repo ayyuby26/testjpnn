@@ -1,16 +1,15 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:jpnn2/const.dart';
-import 'package:jpnn2/data/models/headline_model.dart';
+import 'package:jpnn2/model/headline_model.dart';
 
-class HeadlineApi {
-  static Future<List<HeadlineModel>?> get(int page) async {
+class HeadlineSearchApi {
+  static Future<List<HeadlineModel>?> get(String keyword) async {
     final _result = await http.get(
-      Uri.parse("${baseUrlQ}top-headlines?country=id&page=$page&apiKey=$key"),
+      Uri.parse("${baseUrlQ}everything?q=$keyword&page=1&apiKey=$key"),
     );
 
-    print("TEST55 ${baseUrlQ}top-headlines?country=id&page=$page&apiKey=$key");
+    print(jsonDecode(_result.body)['articles']);
 
     try {
       final _data = jsonDecode(_result.body);
@@ -19,7 +18,7 @@ class HeadlineApi {
       temp.map((e) => cc.add(HeadlineModel.fromJson(e))).toList();
       return cc;
     } catch (e) {
-      print("HeadlineApi $e");
+      print("HeadlineSearchApi $e");
     }
   }
 }
