@@ -1,4 +1,4 @@
 # NewsApp
 
-State Management: Provider
-Pattern: MVVM
+- State Management Provider
+- Patternt MVVM
