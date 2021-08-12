@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpnn2/view/screens/headline_screen/headline_screen.dart';
+import 'package:jpnn2/view/screens/headline_screen.dart';
 import 'package:jpnn2/view_model/headline_view_model.dart';
 import 'package:provider/provider.dart';
 
