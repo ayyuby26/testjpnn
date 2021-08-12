@@ -5,4 +5,4 @@
 
 ### feature:
 - infinity pages
-- reload
+- pull for reload page
