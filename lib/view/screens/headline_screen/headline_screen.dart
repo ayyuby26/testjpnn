@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:jpnn2/utils/general.dart';
-import 'package:jpnn2/view/screens/headline_screen/headline_parts.dart';
 import 'package:jpnn2/view_model/headline_view_model.dart';
 import 'package:provider/provider.dart';
 import '../headline_search_screen.dart';
@@ -46,9 +45,11 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(width: 10),
                 Image.network(
                   "${_data?.urlToImage}",
                   width: 80,
+                  height: 80,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, _) {
                     return imgError(
@@ -64,14 +65,17 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
                     children: [
                       Text(
                         "${_data?.title}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 5),
                       Text(
                         "${_data?.description}",
                         maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       Text(
                         "${_data?.source.name}",
@@ -82,6 +86,7 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
                     ],
                   ),
                 ),
+                SizedBox(width: 10),
               ],
             ),
           );
@@ -120,6 +125,7 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
                   child: Text(
                     "${e?.title}",
                     maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 )
               ],
@@ -152,12 +158,15 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
                 child: Container(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    color: Colors.white.withOpacity(.5),
+                    color: Colors.white.withOpacity(.8),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "${prov.getHeadline[0]?.title}",
-                        style: TextStyle(),
+                        // maxLines: 2,
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
                       ),
                     ),
                   ),
@@ -207,16 +216,21 @@ class _HeadlineScreenState extends State<HeadlineScreen> {
                             }),
                           );
                         },
-                        child: Text("Search..."),
+                        child: Text(
+                          "Search...",
+                          style: TextStyle(color: Colors.black54),
+                        ),
                       ),
                     ),
-                    if (prov.getHeadline.isNotEmpty)
-                      Column(
-                        children: [
-                          headline(prov),
-                          itemList(prov),
-                        ],
-                      ),
+                    (prov.getHeadline.isNotEmpty)
+                        ? Column(
+                            children: [
+                              headline(prov),
+                              SizedBox(height: 10),
+                              itemList(prov),
+                            ],
+                          )
+                        : SizedBox(height: 20),
                   ],
                 ),
               ),

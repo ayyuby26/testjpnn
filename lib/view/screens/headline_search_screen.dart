@@ -39,7 +39,7 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
               isDense: true,
               contentPadding: EdgeInsets.fromLTRB(15, 10, 0, 10),
               border: InputBorder.none,
-              fillColor: Colors.white.withOpacity(.3),
+              fillColor: Colors.blue.withOpacity(.1),
               filled: true,
               suffixIcon: InkWell(
                 onTap: () {
@@ -72,6 +72,7 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
                 Image.network(
                   "${prov.getHeadlineSearch[index]?.urlToImage}",
                   width: 80,
+                  height: 80,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return imgError(
@@ -87,6 +88,8 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
                     children: [
                       Text(
                         "${prov.getHeadlineSearch[index]?.title}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -94,6 +97,7 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
                       SizedBox(height: 10),
                       Text(
                         "${prov.getHeadlineSearch[index]?.description}",
+                        overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
                       Text(
@@ -113,6 +117,7 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
 
       return Scaffold(
         appBar: AppBar(
+          elevation: 1,
           automaticallyImplyLeading: true,
           leading: Container(
             margin: const EdgeInsets.only(left: 10),
@@ -126,13 +131,13 @@ class _HeadlineSearchScreenState extends State<HeadlineSearchScreen> {
                 alignment: Alignment.center,
                 child: Icon(
                   Icons.chevron_left,
-                  color: Colors.white,
+                  color: Colors.blue[300],
                 ),
               ),
             ),
           ),
           leadingWidth: 30,
-          backgroundColor: Colors.blue[100],
+          backgroundColor: Colors.white,
           title: _search,
         ),
         body: SafeArea(
